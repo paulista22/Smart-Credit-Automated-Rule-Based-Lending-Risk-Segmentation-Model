@@ -16,6 +16,7 @@ How can we design and implement an automated loan evaluation model in Excel that
 ## Project Diagram 
 <img width="1536" height="1024" alt="Project Diagram (3)" src="https://github.com/user-attachments/assets/e96a72f6-a1ca-46c2-8810-3dc2d57d026f" />
 ## 🧠 Methodology
+
 1. Data Ingestion Layer
 Raw client application files (CSV/Excel) are imported into the system and standardized into structured tables. Initial exploratory data analysis (EDA) is performed to validate data integrity, formats, and completeness.
 
