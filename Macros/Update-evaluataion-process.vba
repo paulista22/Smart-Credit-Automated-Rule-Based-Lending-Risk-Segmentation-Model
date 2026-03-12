@@ -6,7 +6,6 @@
 ' 5. Continue with the next client
 
 Option Explicit
-
 Sub UpdateEvaluation()
 
     Dim wsClean As Worksheet: Set wsClean = Sheets("Clean_macro.")
@@ -22,21 +21,21 @@ Sub UpdateEvaluation()
     Dim i As Long
     Dim clientID
     
+    Dim newRow As ListRow
+    Dim destRow As Long
+    
     Application.ScreenUpdating = False
     Application.EnableEvents = False
 
-    'Load evaluation table into dictionary 
+    'Load Evaluations table IDs into dictionary
     dataEval = tblEval.ListColumns("ID").DataBodyRange.Value
     
     For i = 1 To UBound(dataEval, 1)
         dict(dataEval(i, 1)) = True
     Next i
 
-    'Load clen table in memory
+    'Load Clean table into memory
     dataClean = tblClean.DataBodyRange.Value
-    
-    Dim nextRow As Long
-    nextRow = tblEval.ListRows.Count + 1
 
     'Loop through new clients
     For i = 1 To UBound(dataClean, 1)
@@ -45,23 +44,29 @@ Sub UpdateEvaluation()
         
         If Not dict.exists(clientID) Then
         
-            tblEval.ListRows.Add
+            'Add new row to Evaluations table
+            Set newRow = tblEval.ListRows.Add
             
-            WriteToCell tblClean, wsEval, i, nextRow, "ID"
-            WriteToCell tblClean, wsEval, i, nextRow, "Client_Name"
-            WriteToCell tblClean, wsEval, i, nextRow, "Age"
-            WriteToCell tblClean, wsEval, i, nextRow, "Monthly_Income"
-            WriteToCell tblClean, wsEval, i, nextRow, "Loan_Amount"
-            WriteToCell tblClean, wsEval, i, nextRow, "Annual_Rate"
-            WriteToCell tblClean, wsEval, i, nextRow, "Term_Years"
-            WriteToCell tblClean, wsEval, i, nextRow, "Credit_Score"
-            WriteToCell tblClean, wsEval, i, nextRow, "Years_Employment"
-            WriteToCell tblClean, wsEval, i, nextRow, "Current_Debt"
+            'Get actual worksheet row number
+            destRow = newRow.Range.Row
             
-            EvaluateNewRow wsEval.Rows(nextRow)
+            'Write data
+            WriteToCell tblClean, wsEval, i, destRow, "ID"
+            WriteToCell tblClean, wsEval, i, destRow, "Client_Name"
+            WriteToCell tblClean, wsEval, i, destRow, "Age"
+            WriteToCell tblClean, wsEval, i, destRow, "Monthly_Income"
+            WriteToCell tblClean, wsEval, i, destRow, "Loan_Amount"
+            WriteToCell tblClean, wsEval, i, destRow, "Annual_Rate"
+            WriteToCell tblClean, wsEval, i, destRow, "Term_Years"
+            WriteToCell tblClean, wsEval, i, destRow, "Credit_Score"
+            WriteToCell tblClean, wsEval, i, destRow, "Years_Employment"
+            WriteToCell tblClean, wsEval, i, destRow, "Current_Debt"
             
+            'Run evaluation rules
+            EvaluateNewRow wsEval.Rows(destRow)
+            
+            'Store ID in dictionary to prevent duplicates
             dict(clientID) = True
-            nextRow = nextRow + 1
             
         End If
         
