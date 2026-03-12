@@ -16,72 +16,50 @@ How can we design and implement an automated loan evaluation model in Excel that
 ## Project Diagram 
 <img width="1536" height="1024" alt="Project Diagram (3)" src="https://github.com/user-attachments/assets/e96a72f6-a1ca-46c2-8810-3dc2d57d026f" />
 
-## Methodology
+## 📂 Methodology
 
-1. Data Ingestion Layer
-Raw client application files (CSV/Excel) are imported into the system and standardized into structured tables. Initial exploratory data analysis (EDA) is performed to validate data integrity, formats, and completeness.
+### 🔹 Data Layer
+* **Data Ingestion:** Raw client application files (CSV/Excel) are imported into the system and standardized into structured tables.
+* **Initial Cleaning (EDA):** Exploratory Data Analysis is performed to validate data integrity, ensuring correct formats and completeness before processing.
 
-2. Data Structuring & Cleaning
-Data is converted into Excel Tables to ensure dynamic range management. Validation rules and automated formatting are applied to prepare the dataset for processing.
+### 🔹 Logic Layer
+* **Data Structuring:** Data is converted into **Excel Tables** to ensure dynamic range management. Validation rules and automated formatting are applied to prepare the dataset.
+* **VBA Automation Layer:** Custom VBA macros automate:
+    * New record detection and seamless insertion.
+    * Deduplication and integrity checks via unique ID validation.
+    * Automated rule execution and structured evaluation.
+    * Data standardization and formatting.
+    * *This layer simulates a lightweight ETL (Extract, Transform, Load) engine within Excel.*
+* **Rule-Based Decision Engine:** A structured framework evaluates each loan application based on:
+    * Credit Score thresholds, Debt Exposure (DTI), Years of Employment, and Age conditions.
+    * **Automated Classification:** Applications are categorized as **Approved**, **Refused**, or **Revision**.
+    * **Transparency:** Each decision is supported by a corresponding **Rule Flag** for full risk segmentation transparency.
 
-3. VBA Automation Layer
-Custom VBA macros automate:
-New record detection and insertion
-Duplicate control via unique ID validation
-Rule execution and structured evaluation
-Data standardization and formatting
-This layer simulates a lightweight ETL and processing engine within Excel.
+### 🔹 Analytics Layer
+* **Risk Segmentation & Client Lookup:** A dynamic interface allows for case-level analysis, displaying decision outcomes, risk categories, and key financial indicators for compliance validation.
+* **KPI Aggregation & Dashboard:** Pivot Tables aggregate portfolio-level metrics, including:
+    * Approval rates, average DTI ratios, and risk distribution patterns.
+    * An interactive dashboard provides executive-level insights through dynamic visualizations.
 
-4. Rule-Based Decision Engine
-A structured rule logic framework evaluates each loan application based on:
-Credit Score thresholds
-Debt exposure
-Years of employment
-Age conditions
-Applications are automatically classified into:
-Approved
-Refused
-Revision
-Each decision is supported by a corresponding Rule Flag for risk segmentation transparency.
-
-5. Risk Segmentation & Client Lookup
-A dynamic lookup interface allows individual client review, displaying:
-Decision outcome
-Risk category
-Key financial indicators
-This enables case-level analysis and compliance validation.
-
-6. KPI Aggregation & Dashboard Analytics
-Pivot Tables aggregate portfolio-level metrics including:
-Approval rate
-Average DTI ratio
-Debt exposure by rule category
-Risk distribution patterns
-An interactive dashboard provides executive-level insights through dynamic visualizations.
+---
 
 ## 🛠 Skills & Tools Applied
-Technical Skills
-Advanced Microsoft Excel
-VBA Automation & Macro Development
-Rule-Based Logic Design
-Data Cleaning & Structuring
-Risk Segmentation Modeling
-KPI Design & Dashboard Development
-Ad-hoc Business Analysis
 
-Analytical Skills
-Credit Risk Analysis
-Debt-to-Income (DTI) Evaluation
-Portfolio Performance Monitoring
-Operational Efficiency Assessment
-Logical Framework Design
+### **Technical Skills**
+* **Advanced Microsoft Excel:** VBA Automation & Macro Development.
+* **Data Architecture:** Rule-Based Logic Design & ETL Simulation.
+* **Analytics:** Risk Segmentation Modeling & KPI Dashboard Development.
+* **Data Governance:** Data Cleaning, Structuring, and Validation.
 
-Tools
-Microsoft Excel (Advanced)
-VBA (Visual Basic for Applications)
-Pivot Tables & Dynamic Charts
-XLOOKUP & Advanced Formulas
-Structured Tables & Data Validation
+### **Analytical Skills**
+* **Credit Risk Analysis:** Debt-to-Income (DTI) Evaluation & Risk Profiling.
+* **Performance Monitoring:** Portfolio Tracking & Operational Efficiency Assessment.
+* **Logical Design:** Framework development for automated decision-making.
+
+### **Tools**
+* **Microsoft Excel:** (XLOOKUP, Advanced Formulas, Pivot Tables).
+* **VBA:** (Visual Basic for Applications) for process automation.
+* **Data Visualization:** Dynamic Charts and Interactive Dashboards.
 ## Final Report
 file:///C:/Users/paubr/OneDrive/Escritorio/DATA%20ANALYST/projects%20portafolio/excel%20project/excel_loan_FINANZIA/Final%20report.pdf
 
