@@ -1,0 +1,48 @@
+' Macro: RefreshCleanData
+' Description:
+' This macro refreshes Power Query data, standardizes client names,
+' removes duplicate records based on key fields, and formats the table
+' for better readability. It helps maintain a clean dataset for analysis.
+
+Option Explicit
+
+Sub RefreshCleanData()
+
+    Dim ws As Worksheet
+    Dim tbl As ListObject
+    Dim i As Long
+
+    Set ws = Sheets("clean_macro.")
+    Set tbl = ws.ListObjects(1)
+
+    Application.ScreenUpdating = False
+
+    'Update Power Query
+    ActiveWorkbook.RefreshAll
+    Application.CalculateUntilAsyncQueriesDone
+
+    'Name cleaning
+    For i = 1 To tbl.ListRows.Count
+        
+        tbl.DataBodyRange(i, tbl.ListColumns("Client_Name").Index).Value = _
+        UCase(Trim(CStr(tbl.DataBodyRange(i, tbl.ListColumns("Client_Name").Index).Value)))
+        
+    Next i
+
+    'Remove duplicates
+    tbl.Range.RemoveDuplicates Columns:=Array( _
+        tbl.ListColumns("Source.Name").Index, _
+        tbl.ListColumns("ID").Index, _
+        tbl.ListColumns("Client_Name").Index, _
+        tbl.ListColumns("Age").Index, _
+        tbl.ListColumns("Monthly_Income").Index _
+        ), Header:=xlYes
+
+    ws.Columns.AutoFit
+
+    Application.ScreenUpdating = True
+
+    MsgBox "Data Updated and removed duplicates"
+
+End Sub
+
